@@ -19,7 +19,18 @@
         let currentvalue = "";
 
         function evaluateresult(){
-            const convertedvalue = currentvalue.replace('x','*',).replace('÷','/').replace('%','*0.01')
+            const convertedvalue = currentvalue.replace('x','*',)
+                                               .replace('÷','/')
+                                               .replace('%','*0.01')
+                                               .replace('sin','Math.sin')
+                                               .replace('cos','Math.cos')
+                                               .replace('ln','Math.log')
+                                               .replace('π','Math.PI')
+                                               .replace('log','Math.log10')
+                                               .replace('e','Math.E')
+                                               .replace('tan','Math.tan')
+                                               .replace('√','Math.sqrt')
+
             const result = eval(convertedvalue)
 
             currentvalue = result.toString();
@@ -30,13 +41,15 @@
         for (let i = 0; i < buttons.length; i++) {
           let button = buttons[i];
           button.addEventListener("click", function () {
-            console.log("button clicked", button.innerText);
+
             const value = button.innerText;
 
-            if (value == "AC") {
+            try{
+                if (value == "AC") {
               currentvalue = "";
               display.value = currentvalue;
-            } else if(value == "="){
+            }
+            else if(value == "="){
                 evaluateresult()
             }
 
@@ -45,6 +58,12 @@
               display.value = currentvalue;
               console.log(currentvalue);
             }
+            }catch (error){
+              console.log(error,"tejas here is error");
+              currentvalue = "ERROR"
+            }
+
+
           });
         }
       });
@@ -62,6 +81,8 @@
                 class="form-control form-control-lg"
                 type="text"
                 aria-label=".form-control-lg example"
+                value="0"
+                readonly
               />
               <div class="row gx-1">
                 <div class="col-3">
@@ -162,6 +183,46 @@
                 <div class="col-3">
                   <button type="button" class="btn btn-light w-100 mt-2">
                     +
+                  </button>
+                </div>
+                <div class="col-3">
+                  <button type="button" class="btn btn-light w-100 mt-2">
+                    sin
+                  </button>
+                </div>
+                <div class="col-3">
+                  <button type="button" class="btn btn-light w-100 mt-2">
+                    ln
+                  </button>
+                </div>
+                <div class="col-3">
+                  <button type="button" class="btn btn-light w-100 mt-2">
+                    π
+                  </button>
+                </div>
+                <div class="col-3">
+                  <button type="button" class="btn btn-light w-100 mt-2">
+                    cos
+                  </button>
+                </div>
+                <div class="col-3">
+                  <button type="button" class="btn btn-light w-100 mt-2">
+                    log
+                  </button>
+                </div>
+                <div class="col-3">
+                  <button type="button" class="btn btn-light w-100 mt-2">
+                    e
+                  </button>
+                </div>
+                <div class="col-3">
+                  <button type="button" class="btn btn-light w-100 mt-2">
+                    tan
+                  </button>
+                </div>
+                <div class="col-3">
+                  <button type="button" class="btn btn-light w-100 mt-2">
+                    √
                   </button>
                 </div>
               </div>
